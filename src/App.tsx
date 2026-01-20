@@ -201,20 +201,34 @@ function App() {
                 </div>
 
                 {/* PPDT Description Column */}
-                <div className="bg-slate-950/50 border border-slate-800 p-5 relative">
+                <div className="bg-slate-950/50 border border-slate-800 p-5 relative flex flex-col h-full">
                    <div className="absolute top-0 right-0 p-2 opacity-20">
                      <AlertCircle className="w-12 h-12 text-slate-500" />
                    </div>
+                   
                    <h4 className="font-mono text-xs text-emerald-500 mb-4 uppercase tracking-wider">
                      PPDT: Visual Intel
                    </h4>
-                   <div className="space-y-4">
+
+                   {/* Added Image Here */}
+                   <div className="relative mb-4 group overflow-hidden border border-slate-700 rounded bg-black">
+                     <img 
+                       src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjeRqdgpN8hGx1XDx2P5QSiUd_GPPXVe3TlnnbNL0F0MZGGGowU1UPTWbijZky2h7_qUVN0WJ14sMPZqsOmF-aaBLFCTHVYwZBjC9XpevL_RSBHHSQJdNCUGQdvJzxG__8rDNHKS_1Xqj9hqJGQ9SqBRNzaY0Fm2Lgeq2jsWB4_5636qgX6KoGO_qMmGChp/s1600/PPDT.png" 
+                       alt="PPDT Scenario" 
+                       className="w-full h-40 object-cover opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500"
+                     />
+                     <div className="absolute bottom-0 left-0 right-0 bg-black/70 p-1 text-[10px] font-mono text-emerald-500 text-center">
+                       IMG_REF_01.PNG
+                     </div>
+                   </div>
+
+                   <div className="space-y-4 flex-grow">
                      <div>
-                       <span className="text-xs font-mono text-slate-500 block mb-1">CHARACTERS</span>
+                       <span className="text-xs font-mono text-slate-500 block mb-1">CHARACTERS DETECTED</span>
                        <p className="text-slate-300 font-medium">06 Total</p>
                      </div>
                      <div>
-                       <span className="text-xs font-mono text-slate-500 block mb-1">SCENARIO OBSERVED</span>
+                       <span className="text-xs font-mono text-slate-500 block mb-1">SITUATION REPORT</span>
                        <p className="text-sm text-slate-400 leading-relaxed italic border-l-2 border-slate-700 pl-3">
                          "A car hit a tree in one corner. Four men are carrying a young boy—one of those men is wearing a cap. One man is standing in another corner observing the situation."
                        </p>
