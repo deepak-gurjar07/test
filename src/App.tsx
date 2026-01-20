@@ -4,7 +4,8 @@ import {
   Github, Linkedin, Mail, ExternalLink, 
   Target, Shield, Award, Crosshair, 
   MapPin, Flag, Terminal, Cpu, 
-  Send, CheckCircle, FileText, ChevronRight
+  Send, CheckCircle, FileText, ChevronRight,
+  ClipboardList, Users, AlertCircle, Link as LinkIcon
 } from 'lucide-react';
 
 function App() {
@@ -29,8 +30,6 @@ function App() {
     e.preventDefault();
     try {
       // Simulation of API call
-      // const response = await axios.post('/api/send', formData);
-      // Assuming success for demo
       setSuccess(true);
       setFormData({ name: '', email: '', message: '' });
       if (formRef.current) formRef.current.reset();
@@ -52,7 +51,7 @@ function App() {
       {/* Radar/Sonar Ambient Effect */}
       <div className="fixed top-[-20%] right-[-10%] w-[600px] h-[600px] bg-emerald-900/20 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
 
-      {/* Navigation - Top Bar for Tactical Feel */}
+      {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full bg-slate-950/90 backdrop-blur-md z-50 border-b border-slate-800">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -62,7 +61,7 @@ function App() {
             </span>
           </div>
           <div className="hidden md:flex gap-8 font-mono text-xs tracking-widest">
-            {['PROFILE', 'INTEL', 'OPERATIONS', 'COMMS'].map((item) => (
+            {['PROFILE', 'LOGS', 'INTEL', 'OPERATIONS', 'COMMS'].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-emerald-400 transition-colors flex items-center gap-1 group">
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity text-emerald-500">[</span>
                 {item}
@@ -75,7 +74,7 @@ function App() {
 
       <main className="container mx-auto px-6 pt-24 pb-12 relative z-10">
         
-        {/* Hero Section: The Dossier Header */}
+        {/* Hero Section */}
         <section id="profile" className="min-h-[90vh] flex flex-col justify-center border-l-2 border-slate-800 pl-8 ml-4 md:ml-0 md:pl-12 md:border-l-4">
           
           <div className="mb-6 inline-flex items-center gap-3 px-3 py-1 bg-emerald-950/30 border border-emerald-900/50 rounded text-emerald-400 font-mono text-xs tracking-wider">
@@ -93,7 +92,7 @@ function App() {
           </p>
 
           <div className="flex flex-wrap gap-4 mb-12">
-            <a href="#contact" className="px-6 py-3 bg-emerald-700 hover:bg-emerald-600 text-white font-bold tracking-wider uppercase text-sm transition-all clip-path-slant flex items-center gap-2">
+            <a href="#comms" className="px-6 py-3 bg-emerald-700 hover:bg-emerald-600 text-white font-bold tracking-wider uppercase text-sm transition-all clip-path-slant flex items-center gap-2">
               <Send className="w-4 h-4" /> Initialize Contact
             </a>
             <a href="#operations" className="px-6 py-3 border border-slate-600 hover:border-emerald-500 text-slate-300 hover:text-emerald-400 font-bold tracking-wider uppercase text-sm transition-all flex items-center gap-2">
@@ -101,7 +100,6 @@ function App() {
             </a>
           </div>
 
-          {/* Status Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl border-t border-slate-800 pt-8">
             <div>
               <p className="font-mono text-xs text-slate-500 mb-1">EDUCATION</p>
@@ -125,7 +123,100 @@ function App() {
           </div>
         </section>
 
-        {/* About / Mission Profile */}
+        {/* NEW SECTION: SSB ATTEMPTS (Mission Logs) */}
+        <section id="logs" className="py-24">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="h-px bg-slate-800 flex-grow"></div>
+            <h2 className="text-2xl font-mono text-emerald-500 font-bold tracking-widest uppercase flex items-center gap-2">
+              <ClipboardList className="w-5 h-5" /> Mission Logs (SSB)
+            </h2>
+            <div className="h-px bg-slate-800 flex-grow"></div>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            {/* Log Entry Card */}
+            <div className="bg-slate-900 border border-slate-800 relative group hover:border-emerald-500/30 transition-all">
+              {/* Card Header */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between p-6 border-b border-slate-800 bg-slate-950/50">
+                <div className="flex items-center gap-4 mb-4 md:mb-0">
+                   <div className="bg-slate-800 p-2 rounded text-slate-400">
+                     <Flag className="w-6 h-6" />
+                   </div>
+                   <div>
+                     <h3 className="font-bold text-slate-200 text-lg">ATTEMPT #1</h3>
+                     <p className="font-mono text-xs text-slate-500">16 JAN 2026</p>
+                   </div>
+                </div>
+                <div className="flex items-center gap-3">
+                   <span className="px-3 py-1 bg-red-900/20 text-red-400 border border-red-900/30 text-xs font-mono font-bold rounded uppercase">
+                     Screened Out
+                   </span>
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-6 grid md:grid-cols-2 gap-8">
+                
+                {/* Stats Column */}
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-mono text-xs text-emerald-500 mb-3 uppercase tracking-wider flex items-center gap-2">
+                      <Users className="w-4 h-4" /> Reporting Data
+                    </h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-slate-950 p-4 border border-slate-800">
+                        <p className="text-2xl font-bold text-slate-200">114</p>
+                        <p className="text-xs text-slate-500 font-mono">REPORTED</p>
+                      </div>
+                      <div className="bg-slate-950 p-4 border border-slate-800">
+                        <p className="text-2xl font-bold text-emerald-400">27</p>
+                        <p className="text-xs text-slate-500 font-mono">SCREENED IN</p>
+                        <p className="text-[10px] text-slate-600 font-mono mt-1">(20 REPEATER / 7 FRESHER)</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                     <h4 className="font-mono text-xs text-emerald-500 mb-3 uppercase tracking-wider flex items-center gap-2">
+                      <FileText className="w-4 h-4" /> OIR Intelligence
+                    </h4>
+                     <a href="#" className="flex items-center justify-between p-4 bg-slate-950 border border-slate-800 hover:border-emerald-500/50 group transition-all cursor-pointer">
+                        <span className="text-sm font-semibold text-slate-300">DIPR 35 & 55</span>
+                        <span className="flex items-center gap-2 text-xs font-mono text-emerald-500 group-hover:underline">
+                           <LinkIcon className="w-3 h-3" /> ACCESS PDF RESOURCE
+                        </span>
+                     </a>
+                  </div>
+                </div>
+
+                {/* PPDT Description Column */}
+                <div className="bg-slate-950/50 border border-slate-800 p-5 relative">
+                   <div className="absolute top-0 right-0 p-2 opacity-20">
+                     <AlertCircle className="w-12 h-12 text-slate-500" />
+                   </div>
+                   <h4 className="font-mono text-xs text-emerald-500 mb-4 uppercase tracking-wider">
+                     PPDT: Visual Intel
+                   </h4>
+                   <div className="space-y-4">
+                     <div>
+                       <span className="text-xs font-mono text-slate-500 block mb-1">CHARACTERS</span>
+                       <p className="text-slate-300 font-medium">06 Total</p>
+                     </div>
+                     <div>
+                       <span className="text-xs font-mono text-slate-500 block mb-1">SCENARIO OBSERVED</span>
+                       <p className="text-sm text-slate-400 leading-relaxed italic border-l-2 border-slate-700 pl-3">
+                         "A car hit a tree in one corner. Four men are carrying a young boy—one of those men is wearing a cap. One man is standing in another corner observing the situation."
+                       </p>
+                     </div>
+                   </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mission Profile (Skills) */}
         <section id="intel" className="py-24">
           <div className="flex items-center gap-4 mb-12">
             <div className="h-px bg-slate-800 flex-grow"></div>
@@ -151,7 +242,6 @@ function App() {
               </p>
             </div>
 
-            {/* Arsenal / Skills */}
             <div className="space-y-6">
               <h3 className="text-xl font-bold text-slate-100 uppercase mb-4 flex items-center gap-2">
                 <Terminal className="w-5 h-5 text-emerald-500" /> Technical Loadout
@@ -188,8 +278,6 @@ function App() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            
-            {/* Project 1: CDS Master */}
             <div className="group relative bg-slate-900 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300">
               <div className="absolute top-4 right-4 z-20">
                 <span className="px-2 py-1 bg-emerald-900/50 text-emerald-400 text-xs font-mono border border-emerald-800">
@@ -221,7 +309,6 @@ function App() {
               </div>
             </div>
 
-            {/* Project 2: Calculator */}
             <div className="group relative bg-slate-900 border border-slate-800 hover:border-yellow-600/50 transition-all duration-300">
               <div className="absolute top-4 right-4 z-20">
                 <span className="px-2 py-1 bg-yellow-900/20 text-yellow-500 text-xs font-mono border border-yellow-800/50">
@@ -255,7 +342,7 @@ function App() {
           </div>
         </section>
 
-        {/* Education Record - The "Service History" Look */}
+        {/* Education Record */}
         <section className="py-12 border-y border-slate-800 bg-slate-900/20">
            <div className="max-w-4xl mx-auto">
              <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-800">
