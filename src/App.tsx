@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail, ExternalLink, GraduationCap, Briefcase, Heart, 
 function App() {
 
   const [success, setSuccess] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -14,14 +14,14 @@ function App() {
   });
 
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/send', formData);
@@ -137,11 +137,21 @@ function App() {
 
         {/* About Section - Floating Cards */}
         <section id="about" className="py-24">
-          <h2 className="text-4xl font-bold mb-16 text-center">
+          <h2 className="text-4xl font-bold mb-8 text-center">
             <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               About Me
             </span>
           </h2>
+          
+          {/* Added Bio Section */}
+          <div className="max-w-3xl mx-auto text-center mb-16 px-4">
+             <p className="text-lg text-gray-300 leading-relaxed">
+               I am a defence aspirant actively preparing for exams like <span className="text-purple-400 font-medium">CDS</span> and <span className="text-purple-400 font-medium">AFCAT</span>. 
+               Beyond my studies, I build useful websites for fellow aspirants as a hobby, 
+               combining my technical skills with my passion for the defence sector.
+             </p>
+          </div>
+
           <div className="grid lg:grid-cols-3 gap-8 relative max-w-5xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl -z-10"></div>
             <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-purple-500/30 transform hover:-translate-y-2 transition-all duration-300">
@@ -253,13 +263,13 @@ function App() {
             {/* Project 1: CDS Master */}
             <div className="group rounded-2xl bg-gray-800/50 border border-gray-700/50 overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 flex flex-col h-full">
               <div className="h-56 overflow-hidden relative bg-gray-900">
-                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 opacity-80"></div>
-                 {/* Placeholder for Education/Exam theme */}
-                 <img
-                  src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" 
-                  alt="CDS Master"
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 opacity-80"></div>
+                  {/* Placeholder for Education/Exam theme */}
+                  <img
+                   src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" 
+                   alt="CDS Master"
+                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                 />
                 <div className="absolute top-4 right-4 z-20 bg-gray-900/80 backdrop-blur-sm p-2 rounded-full border border-gray-700">
                   <BookOpen className="w-5 h-5 text-purple-400" />
                 </div>
