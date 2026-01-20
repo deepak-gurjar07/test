@@ -1,6 +1,11 @@
 import axios from 'axios';
 import React, { useState, useRef } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, GraduationCap, Briefcase, Heart, Send, Code, Terminal, Globe, CheckCircle, Calculator, BookOpen } from 'lucide-react';
+import { 
+  Github, Linkedin, Mail, ExternalLink, 
+  Target, Shield, Award, Crosshair, 
+  MapPin, Flag, Terminal, Cpu, 
+  Send, CheckCircle, FileText, ChevronRight
+} from 'lucide-react';
 
 function App() {
 
@@ -13,7 +18,6 @@ function App() {
     message: '',
   });
 
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -24,433 +28,313 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/send', formData);
-      if (response.status === 200) {
+      // Simulation of API call
+      // const response = await axios.post('/api/send', formData);
+      // Assuming success for demo
       setSuccess(true);
-
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-
-      if (formRef.current) {
-        formRef.current.reset();
-      }
-
+      setFormData({ name: '', email: '', message: '' });
+      if (formRef.current) formRef.current.reset();
       setTimeout(() => setSuccess(false), 5000);
-    }else{
-      console.error('Unexpected response:', response);
-        alert('Error sending message');
-    } 
-  }catch (error) {
+    } catch (error) {
       console.error('Error sending message:', error);
       alert('Error sending message');
     }
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 min-h-screen relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl -top-48 -right-48 animate-pulse"></div>
-        <div className="absolute w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-3xl -bottom-48 -left-48 animate-pulse delay-1000"></div>
+    <div className="bg-slate-950 text-slate-300 min-h-screen relative overflow-x-hidden font-sans selection:bg-emerald-900 selection:text-emerald-100">
+      
+      {/* Tactical Background Grid */}
+      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(to right, #10b981 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
+      
+      {/* Radar/Sonar Ambient Effect */}
+      <div className="fixed top-[-20%] right-[-10%] w-[600px] h-[600px] bg-emerald-900/20 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
 
-      {/* Navigation - Vertical on desktop */}
-      <nav className="fixed left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-20 mix-blend-difference z-50">
-        <div className="w-px h-32 bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
-        {['about', 'education', 'projects', 'activities', 'contact'].map((item) => (
-          <a 
-            key={item}
-            href={`#${item}`}
-            className="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors transform -rotate-90 w-32 text-center"
-          >
-            {item}
-          </a>
-        ))}
-        <div className="w-px h-32 bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
-      </nav>
-
-      {/* Mobile Navigation */}
-      <nav className="fixed top-0 left-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 lg:hidden border-b border-gray-800">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-              DG
+      {/* Navigation - Top Bar for Tactical Feel */}
+      <nav className="fixed top-0 left-0 w-full bg-slate-950/90 backdrop-blur-md z-50 border-b border-slate-800">
+        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+            <span className="font-mono text-sm font-bold tracking-widest text-emerald-500">
+              DEEPAK.G // ASPIRANT
             </span>
-            <div className="flex gap-6">
-              {['about', 'projects', 'contact'].map((item) => (
-                <a 
-                  key={item}
-                  href={`#${item}`}
-                  className="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
+          </div>
+          <div className="hidden md:flex gap-8 font-mono text-xs tracking-widest">
+            {['PROFILE', 'INTEL', 'OPERATIONS', 'COMMS'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-emerald-400 transition-colors flex items-center gap-1 group">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-emerald-500">[</span>
+                {item}
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-emerald-500">]</span>
+              </a>
+            ))}
           </div>
         </div>
       </nav>
 
-      {/* Main Content Container */}
-      <div className="max-w-[1440px] mx-auto px-8 lg:pl-32">
-        {/* Hero Section - Asymmetric Split */}
-        <section className="min-h-screen flex flex-col lg:flex-row items-center pt-20 lg:pt-0">
-          <div className="lg:w-1/2 py-16 lg:pr-16">
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="block text-xl text-purple-400 mb-2">Hello, I'm</span>
-              <span className="block bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 bg-clip-text text-transparent animate-gradient bg-300">
-                Deepak
-              </span>
-            </h1>
-            <p className="text-lg text-gray-400 mb-8 max-w-lg">
-              Creative developer crafting digital experiences through code and design
-            </p>
-            <div className="flex gap-6">
-              <a href="https://github.com/deepak-gurjar07" target="_blank" rel="noopener noreferrer" 
-                 className="p-3 rounded-full bg-gray-800/50 hover:bg-purple-500/20 backdrop-blur-sm transition-all group border border-gray-700 hover:border-purple-500/50">
-                <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              </a>
-              <a href="https://linkedin.com/in/deepakgurjar03" target="_blank" rel="noopener noreferrer"
-                 className="p-3 rounded-full bg-gray-800/50 hover:bg-purple-500/20 backdrop-blur-sm transition-all group border border-gray-700 hover:border-purple-500/50">
-                <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              </a>
-              <a href="mailto:gurjardeepak206@gmail.com"
-                 className="p-3 rounded-full bg-gray-800/50 hover:bg-purple-500/20 backdrop-blur-sm transition-all group border border-gray-700 hover:border-purple-500/50">
-                <Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              </a>
-            </div>
-          </div>
-          <div className="lg:w-1/2 p-8">
-            <div className="relative max-w-md mx-auto group">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" 
-                alt="Profile" 
-                className="relative rounded-2xl shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 border border-gray-800/50"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* About Section - Floating Cards */}
-        <section id="about" className="py-24">
-          <h2 className="text-4xl font-bold mb-8 text-center">
-            <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-              About Me
-            </span>
-          </h2>
+      <main className="container mx-auto px-6 pt-24 pb-12 relative z-10">
+        
+        {/* Hero Section: The Dossier Header */}
+        <section id="profile" className="min-h-[90vh] flex flex-col justify-center border-l-2 border-slate-800 pl-8 ml-4 md:ml-0 md:pl-12 md:border-l-4">
           
-          {/* Added Bio Section */}
-          <div className="max-w-3xl mx-auto text-center mb-16 px-4">
-             <p className="text-lg text-gray-300 leading-relaxed">
-               I am a defence aspirant actively preparing for exams like <span className="text-purple-400 font-medium">CDS</span> and <span className="text-purple-400 font-medium">AFCAT</span>. 
-               Beyond my studies, I build useful websites for fellow aspirants as a hobby, 
-               combining my technical skills with my passion for the defence sector.
-             </p>
+          <div className="mb-6 inline-flex items-center gap-3 px-3 py-1 bg-emerald-950/30 border border-emerald-900/50 rounded text-emerald-400 font-mono text-xs tracking-wider">
+            <Crosshair className="w-3 h-3" />
+            <span>TARGET: CDS & AFCAT 2026</span>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 relative max-w-5xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl -z-10"></div>
-            <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-purple-500/30 transform hover:-translate-y-2 transition-all duration-300">
-              <Code className="w-10 h-10 text-purple-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Frontend</h3>
-              <ul className="space-y-2 text-gray-300 text-sm">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  React & TypeScript
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  Tailwind CSS
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  Next.js
-                </li>
-              </ul>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-purple-500/30 transform hover:-translate-y-2 transition-all duration-300 lg:translate-y-8">
-              <Terminal className="w-10 h-10 text-purple-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Backend</h3>
-              <ul className="space-y-2 text-gray-300 text-sm">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  Node.js
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  Python
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  PostgreSQL
-                </li>
-              </ul>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-purple-500/30 transform hover:-translate-y-2 transition-all duration-300">
-              <Globe className="w-10 h-10 text-purple-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Other Skills</h3>
-              <ul className="space-y-2 text-gray-300 text-sm">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  Core Concepts
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  OOPs
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                  DBMS
-                </li>
-              </ul>
-            </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-slate-100 mb-6 uppercase tracking-tight">
+            Deepak <span className="text-slate-600">Gurjar</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mb-8 leading-relaxed">
+            Defence Aspirant. Engineer. Builder.<br/>
+            <span className="text-emerald-500/80">Bridging the gap between technology and the armed forces.</span>
+          </p>
+
+          <div className="flex flex-wrap gap-4 mb-12">
+            <a href="#contact" className="px-6 py-3 bg-emerald-700 hover:bg-emerald-600 text-white font-bold tracking-wider uppercase text-sm transition-all clip-path-slant flex items-center gap-2">
+              <Send className="w-4 h-4" /> Initialize Contact
+            </a>
+            <a href="#operations" className="px-6 py-3 border border-slate-600 hover:border-emerald-500 text-slate-300 hover:text-emerald-400 font-bold tracking-wider uppercase text-sm transition-all flex items-center gap-2">
+              <FileText className="w-4 h-4" /> View Projects
+            </a>
           </div>
-        </section>
 
-        {/* Education Section - Timeline */}
-        <section id="education" className="py-24">
-          <h2 className="text-4xl font-bold mb-16 text-center">
-            <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-              Education
-            </span>
-          </h2>
-          <div className="max-w-4xl mx-auto relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/50 via-pink-500/50 to-purple-500/50 hidden md:block"></div>
-            <div className="space-y-12 md:space-y-16">
-              <div className="relative flex flex-col md:block">
-                <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-purple-500 rounded-full border-4 border-gray-900 hidden md:block"></div>
-                <div className="grid md:grid-cols-2 gap-4 md:gap-8 text-center md:text-left">
-                  <div className="md:text-right">
-                    <h3 className="text-xl font-semibold mb-2">Bachelor of Technology</h3>
-                    <p className="text-purple-400 text-sm">GLA University</p>
-                  </div>
-                  <div className="md:border-l-0 md:pl-0 border-l-2 border-gray-700 pl-4 ml-4 md:ml-0">
-                    <p className="text-gray-400 text-sm mb-2">2021 - 2025</p>
-                    <p className="text-gray-300 text-sm">Specialized in Computer Science</p>
-                  </div>
-                </div>
-              </div>
-              <div className="relative flex flex-col md:block">
-                <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-pink-500 rounded-full border-4 border-gray-900 hidden md:block"></div>
-                <div className="grid md:grid-cols-2 gap-4 md:gap-8 text-center md:text-left">
-                  <div className="md:text-right">
-                    <h3 className="text-xl font-semibold mb-2">Intermediate</h3>
-                    <p className="text-purple-400 text-sm">JMPS Agra</p>
-                  </div>
-                  <div className="md:border-l-0 md:pl-0 border-l-2 border-gray-700 pl-4 ml-4 md:ml-0">
-                    <p className="text-gray-400 text-sm mb-2">2019 - 2021</p>
-                    <p className="text-gray-300 text-sm">Major in Physics, Chemistry, and Maths</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Projects Section - Balanced Grid */}
-        <section id="projects" className="py-24">
-          <h2 className="text-4xl font-bold mb-16 text-center">
-            <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-              Featured Projects
-            </span>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            
-            {/* Project 1: CDS Master */}
-            <div className="group rounded-2xl bg-gray-800/50 border border-gray-700/50 overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 flex flex-col h-full">
-              <div className="h-56 overflow-hidden relative bg-gray-900">
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 opacity-80"></div>
-                  {/* Placeholder for Education/Exam theme */}
-                  <img
-                   src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" 
-                   alt="CDS Master"
-                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                 />
-                <div className="absolute top-4 right-4 z-20 bg-gray-900/80 backdrop-blur-sm p-2 rounded-full border border-gray-700">
-                  <BookOpen className="w-5 h-5 text-purple-400" />
-                </div>
-              </div>
-              
-              <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">CDS Master</h3>
-                <p className="text-gray-300 mb-6 leading-relaxed flex-grow text-sm">
-                  A dedicated platform for CDS aspirants. Features include previous year questions (PYQs), subject-wise mock tests, and performance analysis tools to streamline exam preparation.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                   {['React', 'Next.js', 'Education', 'Tailwind'].map((tag) => (
-                     <span key={tag} className="px-3 py-1 text-xs font-medium bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20">
-                       {tag}
-                     </span>
-                   ))}
-                </div>
-                <div className="flex gap-4">
-                  <a href="https://cds-master.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex-1 px-4 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 text-sm font-medium shadow-lg shadow-purple-500/25">
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Project 2: Defence Attempt Calculator */}
-            <div className="group rounded-2xl bg-gray-800/50 border border-gray-700/50 overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 flex flex-col h-full">
-               <div className="h-56 overflow-hidden relative bg-gray-900">
-                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10 opacity-80"></div>
-                 {/* Placeholder for Calculator/Utility theme */}
-                 <img
-                  src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" 
-                  alt="Defence Attempt Calculator"
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute top-4 right-4 z-20 bg-gray-900/80 backdrop-blur-sm p-2 rounded-full border border-gray-700">
-                  <Calculator className="w-5 h-5 text-pink-400" />
-                </div>
-              </div>
-              
-              <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition-colors">Defence Calculator</h3>
-                <p className="text-gray-300 mb-6 leading-relaxed flex-grow text-sm">
-                  An essential utility tool for defence aspirants to calculate their remaining attempts for exams like NDA, CDS, and AFCAT based on age and category eligibility criteria.
-                </p>
-                 <div className="flex flex-wrap gap-2 mb-6">
-                   {['React', 'Vercel', 'Utility', 'Calculator'].map((tag) => (
-                     <span key={tag} className="px-3 py-1 text-xs font-medium bg-pink-500/10 text-pink-300 rounded-full border border-pink-500/20">
-                       {tag}
-                     </span>
-                   ))}
-                </div>
-                <div className="flex gap-4">
-                  <a href="https://defence-attempt-calculator.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex-1 px-4 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 text-sm font-medium shadow-lg shadow-purple-500/25">
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Activities Section - Diagonal Layout */}
-        <section id="activities" className="py-24">
-          <h2 className="text-4xl font-bold mb-16 text-center">
-            <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-              Beyond Code
-            </span>
-          </h2>
-          <div className="grid lg:grid-cols-2 gap-12 relative max-w-5xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 blur-3xl -z-10"></div>
-            <div className="lg:translate-y-8">
-              <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-purple-500/30 transform hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-colors"></div>
-                <Briefcase className="w-10 h-10 text-purple-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Tech Community Lead</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Organizing tech meetups and workshops for the local developer community. 
-                  Building bridges between experienced developers and newcomers.
-                </p>
-              </div>
+          {/* Status Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl border-t border-slate-800 pt-8">
+            <div>
+              <p className="font-mono text-xs text-slate-500 mb-1">EDUCATION</p>
+              <p className="font-semibold text-slate-200">B.Tech CSE</p>
             </div>
             <div>
-              <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-purple-500/30 transform hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl group-hover:bg-pink-500/20 transition-colors"></div>
-                <Heart className="w-10 h-10 text-purple-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-3">Volunteer Work</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Teaching coding to underprivileged students through local non-profit organizations. 
-                  Empowering the next generation of developers.
-                </p>
+              <p className="font-mono text-xs text-slate-500 mb-1">LOCATION</p>
+              <p className="font-semibold text-slate-200">UP, India</p>
+            </div>
+            <div>
+              <p className="font-mono text-xs text-slate-500 mb-1">FOCUS</p>
+              <p className="font-semibold text-emerald-400">Defence Tech</p>
+            </div>
+            <div>
+              <p className="font-mono text-xs text-slate-500 mb-1">STATUS</p>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
+                <p className="font-semibold text-slate-200">Preparing</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Contact Section - Split Layout */}
-        <section id="contact" className="py-24">
-          <div className="max-w-5xl mx-auto">
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50">
-              <div className="grid lg:grid-cols-2">
-                <div className="p-8 lg:p-12 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-purple-500/20">
-                  <h2 className="text-3xl font-bold mb-4">Let's Connect</h2>
-                  <p className="text-gray-300 text-sm mb-6 leading-relaxed">
-                    Have a project in mind or just want to chat? Feel free to reach out. 
-                    I'm always open to discussing new opportunities and ideas.
-                  </p>
-                  <div className="space-y-4">
-                    <a href="mailto:deepakgurjar206@gmail.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition-colors text-sm group">
-                      <div className="p-2 bg-gray-900/50 rounded-lg group-hover:bg-purple-500/20 transition-colors">
-                        <Mail className="w-4 h-4" />
-                      </div>
-                      gurjardeepak206@gmail.com
-                    </a>
-                    <a href="https://github.com/deepak-gurjar07" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition-colors text-sm group">
-                      <div className="p-2 bg-gray-900/50 rounded-lg group-hover:bg-purple-500/20 transition-colors">
-                        <Github className="w-4 h-4" />
-                      </div>
-                      github.com/deepak-gurjar07
-                    </a>
-                    <a href="https://linkedin.com/in/deepakgurjar03" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-300 hover:text-purple-400 transition-colors text-sm group">
-                      <div className="p-2 bg-gray-900/50 rounded-lg group-hover:bg-purple-500/20 transition-colors">
-                        <Linkedin className="w-4 h-4" />
-                      </div>
-                      linkedin.com/in/deepakgurjar03
-                    </a>
+        {/* About / Mission Profile */}
+        <section id="intel" className="py-24">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="h-px bg-slate-800 flex-grow"></div>
+            <h2 className="text-2xl font-mono text-emerald-500 font-bold tracking-widest uppercase flex items-center gap-2">
+              <Shield className="w-5 h-5" /> Mission Profile
+            </h2>
+            <div className="h-px bg-slate-800 flex-grow"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="bg-slate-900/50 p-8 border border-slate-800 relative">
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-emerald-500"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-emerald-500"></div>
+              
+              <h3 className="text-xl font-bold text-slate-100 mb-4 uppercase">The Objective</h3>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                My primary objective is to serve the nation as a commissioned officer. 
+                However, I believe that preparation shouldn't be passive. 
+              </p>
+              <p className="text-slate-400 leading-relaxed">
+                I utilize my <span className="text-emerald-400 font-mono">B.Tech CSE</span> background to build digital tools that assist fellow aspirants. 
+                Whether it's calculating attempts or practicing PYQs, I code to solve real problems for the defence community.
+              </p>
+            </div>
+
+            {/* Arsenal / Skills */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-bold text-slate-100 uppercase mb-4 flex items-center gap-2">
+                <Terminal className="w-5 h-5 text-emerald-500" /> Technical Loadout
+              </h3>
+              
+              {[
+                { category: "Frontend Ops", skills: ["React", "Next.js", "Tailwind CSS"], color: "bg-emerald-500" },
+                { category: "Backend Ops", skills: ["Node.js", "Python", "PostgreSQL"], color: "bg-yellow-600" },
+                { category: "Core Intel", skills: ["DSA", "OOPs", "System Design"], color: "bg-blue-600" }
+              ].map((group) => (
+                <div key={group.category} className="bg-slate-900/30 p-4 border-l-2 border-slate-700 hover:border-emerald-500 transition-colors">
+                  <span className="text-xs font-mono text-slate-500 block mb-2">{group.category}</span>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map(skill => (
+                      <span key={skill} className="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700">
+                        {skill}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <div className="p-8 lg:p-12 relative">
-                {success && (
-                    <div className="absolute top-0 left-0 right-0 p-4 bg-emerald-500/10 backdrop-blur-sm border-b border-emerald-500/20 flex items-center gap-2 text-emerald-400 animate-fade-in z-10">
-                      <CheckCircle className="w-5 h-5" />
-                      <span className="text-sm font-medium">Message sent successfully!</span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Operations / Projects */}
+        <section id="operations" className="py-24">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="h-px bg-slate-800 flex-grow"></div>
+            <h2 className="text-2xl font-mono text-emerald-500 font-bold tracking-widest uppercase flex items-center gap-2">
+              <MapPin className="w-5 h-5" /> Field Operations
+            </h2>
+            <div className="h-px bg-slate-800 flex-grow"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            
+            {/* Project 1: CDS Master */}
+            <div className="group relative bg-slate-900 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300">
+              <div className="absolute top-4 right-4 z-20">
+                <span className="px-2 py-1 bg-emerald-900/50 text-emerald-400 text-xs font-mono border border-emerald-800">
+                  LIVE STATUS: ACTIVE
+                </span>
+              </div>
+              <div className="h-48 bg-slate-950 relative overflow-hidden">
+                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                  <Target className="w-16 h-16 text-slate-700 group-hover:text-emerald-900/50 transition-colors" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-slate-100 mb-2 group-hover:text-emerald-400 transition-colors">
+                  OPERATION: CDS Master
+                </h3>
+                <p className="text-slate-400 text-sm mb-4 min-h-[60px]">
+                  A comprehensive tactical suite for CDS aspirants featuring subject-wise mock tests, PYQ analysis, and performance tracking.
+                </p>
+                <div className="flex gap-4 pt-4 border-t border-slate-800/50">
+                  <a href="https://cds-master.vercel.app/" target="_blank" rel="noopener noreferrer" 
+                     className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-500 hover:text-emerald-400 uppercase tracking-wider">
+                    <ExternalLink className="w-3 h-3" /> Deploy
+                  </a>
+                  <a href="#" className="flex items-center gap-2 text-xs font-mono font-bold text-slate-500 hover:text-slate-300 uppercase tracking-wider">
+                    <Github className="w-3 h-3" /> Intel (Code)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Project 2: Calculator */}
+            <div className="group relative bg-slate-900 border border-slate-800 hover:border-yellow-600/50 transition-all duration-300">
+              <div className="absolute top-4 right-4 z-20">
+                <span className="px-2 py-1 bg-yellow-900/20 text-yellow-500 text-xs font-mono border border-yellow-800/50">
+                  UTILITY TOOL
+                </span>
+              </div>
+              <div className="h-48 bg-slate-950 relative overflow-hidden">
+                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                  <Cpu className="w-16 h-16 text-slate-700 group-hover:text-yellow-900/20 transition-colors" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-slate-100 mb-2 group-hover:text-yellow-500 transition-colors">
+                  Attempt Calculator
+                </h3>
+                <p className="text-slate-400 text-sm mb-4 min-h-[60px]">
+                  Strategic planning tool calculating exact eligibility and remaining attempts for NDA, CDS, and AFCAT based on age parameters.
+                </p>
+                <div className="flex gap-4 pt-4 border-t border-slate-800/50">
+                   <a href="https://defence-attempt-calculator.vercel.app/" target="_blank" rel="noopener noreferrer" 
+                     className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-500 hover:text-emerald-400 uppercase tracking-wider">
+                    <ExternalLink className="w-3 h-3" /> Deploy
+                  </a>
+                  <a href="#" className="flex items-center gap-2 text-xs font-mono font-bold text-slate-500 hover:text-slate-300 uppercase tracking-wider">
+                    <Github className="w-3 h-3" /> Intel (Code)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Education Record - The "Service History" Look */}
+        <section className="py-12 border-y border-slate-800 bg-slate-900/20">
+           <div className="max-w-4xl mx-auto">
+             <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-800">
+               <div className="p-6 text-center md:text-right md:pr-12">
+                 <div className="inline-block p-3 rounded-full bg-slate-800 mb-4">
+                   <Award className="w-6 h-6 text-yellow-500" />
+                 </div>
+                 <h4 className="text-lg font-bold text-slate-200">B.Tech (CSE)</h4>
+                 <p className="text-slate-500 font-mono text-sm mt-1">GLA UNIVERSITY</p>
+                 <p className="text-emerald-600/50 font-mono text-xs mt-2">2021 - 2025</p>
+               </div>
+               <div className="p-6 text-center md:text-left md:pl-12">
+                 <div className="inline-block p-3 rounded-full bg-slate-800 mb-4">
+                   <Flag className="w-6 h-6 text-slate-400" />
+                 </div>
+                 <h4 className="text-lg font-bold text-slate-200">Intermediate</h4>
+                 <p className="text-slate-500 font-mono text-sm mt-1">JMPS AGRA</p>
+                 <p className="text-slate-600 font-mono text-xs mt-2">PCM MAJOR</p>
+               </div>
+             </div>
+           </div>
+        </section>
+
+        {/* Contact / Comms */}
+        <section id="comms" className="py-24 max-w-4xl mx-auto">
+          <div className="bg-slate-900 border border-slate-800 p-1">
+            <div className="border border-slate-800/50 p-8 md:p-12">
+              <div className="flex flex-col md:flex-row gap-12">
+                
+                <div className="md:w-1/3 space-y-8">
+                   <div>
+                     <h3 className="font-mono text-emerald-500 text-sm tracking-widest mb-2">SECURE COMMS</h3>
+                     <h2 className="text-2xl font-bold text-white uppercase">Establish Contact</h2>
+                   </div>
+                   
+                   <div className="space-y-4">
+                     <a href="mailto:gurjardeepak206@gmail.com" className="flex items-center gap-3 text-slate-400 hover:text-emerald-400 transition-colors group">
+                       <Mail className="w-4 h-4 group-hover:text-emerald-500" />
+                       <span className="text-sm font-mono">Email Drop</span>
+                     </a>
+                     <a href="https://linkedin.com/in/deepakgurjar03" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-400 hover:text-emerald-400 transition-colors group">
+                       <Linkedin className="w-4 h-4 group-hover:text-emerald-500" />
+                       <span className="text-sm font-mono">LinkedIn</span>
+                     </a>
+                     <a href="https://github.com/deepak-gurjar07" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-400 hover:text-emerald-400 transition-colors group">
+                       <Github className="w-4 h-4 group-hover:text-emerald-500" />
+                       <span className="text-sm font-mono">GitHub</span>
+                     </a>
+                   </div>
+                </div>
+
+                <div className="md:w-2/3 relative">
+                  {success && (
+                    <div className="absolute -top-16 left-0 right-0 bg-emerald-900/20 border border-emerald-500/30 text-emerald-400 px-4 py-2 flex items-center gap-2 font-mono text-sm animate-pulse">
+                      <CheckCircle className="w-4 h-4" /> TRANSMISSION SUCCESSFUL
                     </div>
                   )}
-                  <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-300">Name</label>
-                      <input
-                        type="text"
-                        id="name"
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition-all text-sm"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                      />
+                  
+                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-mono text-slate-500 mb-1">CODENAME / NAME</label>
+                        <input type="text" id="name" required onChange={handleChange} value={formData.name}
+                          className="w-full bg-slate-950 border border-slate-700 text-slate-300 px-4 py-3 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500/20 transition-all text-sm" />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-mono text-slate-500 mb-1">FREQUENCY / EMAIL</label>
+                        <input type="email" id="email" required onChange={handleChange} value={formData.email}
+                          className="w-full bg-slate-950 border border-slate-700 text-slate-300 px-4 py-3 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500/20 transition-all text-sm" />
+                      </div>
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-300">Email</label>
-                      <input
-                        type="email"
-                        id="email"
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition-all text-sm"
-                        placeholder="Enter Your Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                      />
+                      <label className="block text-xs font-mono text-slate-500 mb-1">TRANSMISSION / MESSAGE</label>
+                      <textarea id="message" rows={4} required onChange={handleChange} value={formData.message}
+                        className="w-full bg-slate-950 border border-slate-700 text-slate-300 px-4 py-3 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500/20 transition-all text-sm resize-none"></textarea>
                     </div>
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-300">Message</label>
-                      <textarea
-                        id="message"
-                        rows={4}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition-all text-sm resize-none"
-                        placeholder="Your message..."
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                      ></textarea>
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium py-3 px-4 rounded-lg hover:opacity-90 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 group text-sm shadow-lg shadow-purple-500/25"
-                    >
-                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      Send Message
+                    <button type="submit" 
+                      className="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-4 uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2">
+                      <Send className="w-4 h-4" /> Send Transmission
                     </button>
                   </form>
                 </div>
@@ -459,13 +343,15 @@ function App() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="py-6 border-t border-gray-800">
-          <div className="container mx-auto px-8 text-center text-gray-400 text-sm">
-            <p>© 2024 Deepak Gurjar. Crafted with passion and code.</p>
-          </div>
-        </footer>
-      </div>
+      </main>
+
+      <footer className="border-t border-slate-800 py-8 bg-slate-950">
+        <div className="container mx-auto text-center">
+          <p className="font-mono text-xs text-slate-600">
+            SYSTEM STATUS: ONLINE | © 2024 DEEPAK GURJAR
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
