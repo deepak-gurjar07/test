@@ -233,19 +233,7 @@ function App() {
                        IMG_REF_01.PNG
                      </div>
                    </div>
-
-                   <div className="space-y-4 flex-grow">
-                     <div>
-                       <span className="text-xs font-mono text-slate-500 block mb-1">CHARACTERS DETECTED</span>
-                       <p className="text-slate-300 font-medium">06 Total</p>
-                     </div>
-                     <div>
-                       <span className="text-xs font-mono text-slate-500 block mb-1">SITUATION REPORT</span>
-                       <p className="text-sm text-slate-400 leading-relaxed italic border-l-2 border-slate-700 pl-3">
-                         "A car hit a tree in one corner. Four men are carrying a young boy—one of those men is wearing a cap. One man is standing in another corner observing the situation."
-                       </p>
-                     </div>
-                   </div>
+                  
                 </div>
 
               </div>
