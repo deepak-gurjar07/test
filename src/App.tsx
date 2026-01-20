@@ -123,7 +123,7 @@ function App() {
           </div>
         </section>
 
-        {/* NEW SECTION: SSB ATTEMPTS (Mission Logs) */}
+        {/* MISSION LOGS: SSB ATTEMPTS */}
         <section id="logs" className="py-24">
           <div className="flex items-center gap-4 mb-12">
             <div className="h-px bg-slate-800 flex-grow"></div>
@@ -180,12 +180,23 @@ function App() {
                      <h4 className="font-mono text-xs text-emerald-500 mb-3 uppercase tracking-wider flex items-center gap-2">
                       <FileText className="w-4 h-4" /> OIR Intelligence
                     </h4>
-                     <a href="#" className="flex items-center justify-between p-4 bg-slate-950 border border-slate-800 hover:border-emerald-500/50 group transition-all cursor-pointer">
-                        <span className="text-sm font-semibold text-slate-300">DIPR 35 & 55</span>
-                        <span className="flex items-center gap-2 text-xs font-mono text-emerald-500 group-hover:underline">
-                           <LinkIcon className="w-3 h-3" /> ACCESS PDF RESOURCE
-                        </span>
-                     </a>
+                     <div className="space-y-2">
+                       {/* DIPR 35 Link */}
+                       <a href="https://drive.google.com/file/d/18FPmX5nCUt6Ub2xsxXcnAQcW1jZchDC1/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-slate-950 border border-slate-800 hover:border-emerald-500/50 group transition-all cursor-pointer">
+                          <span className="text-sm font-semibold text-slate-300">DIPR 35 (PDF)</span>
+                          <span className="flex items-center gap-2 text-xs font-mono text-emerald-500 group-hover:underline">
+                             <LinkIcon className="w-3 h-3" /> OPEN FILE
+                          </span>
+                       </a>
+                       
+                       {/* DIPR 55 Link */}
+                       <a href="https://drive.google.com/file/d/1wittfqOM1dLuC464MCoknMv2jB6ZVAjN/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-slate-950 border border-slate-800 hover:border-emerald-500/50 group transition-all cursor-pointer">
+                          <span className="text-sm font-semibold text-slate-300">DIPR 55 (PDF)</span>
+                          <span className="flex items-center gap-2 text-xs font-mono text-emerald-500 group-hover:underline">
+                             <LinkIcon className="w-3 h-3" /> OPEN FILE
+                          </span>
+                       </a>
+                     </div>
                   </div>
                 </div>
 
