@@ -1,12 +1,24 @@
 import axios from 'axios';
 import React, { useState, useRef } from 'react';
 import { 
-  Github, Linkedin, Mail, ExternalLink, 
+  Github, Mail, ExternalLink, 
   Target, Shield, Award, Crosshair, 
   MapPin, Flag, Terminal, Cpu, 
   Send, CheckCircle, FileText, ChevronRight,
   ClipboardList, Users, AlertCircle, Link as LinkIcon
 } from 'lucide-react';
+
+// Custom Reddit Icon Component since it's not in standard Lucide set
+const RedditIcon = ({ className }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.067 1.608.031.203.047.411.047.625 0 3.168-3.085 5.751-6.85 5.751-3.765 0-6.85-2.583-6.85-5.751 0-.213.016-.421.047-.625A1.751 1.751 0 0 1 4.25 11.249c0-.968.785-1.754 1.754-1.754.477 0 .899.182 1.207.491 1.194-.856 2.85-1.418 4.674-1.488l.8-3.747-2.597.547a1.25 1.25 0 0 1-1.248-1.25 1.25 1.25 0 1 1 2.5 0l2.253.475 2.253-.475a1.245 1.245 0 0 1 1.164-.204z"/>
+  </svg>
+);
 
 function App() {
 
@@ -408,10 +420,13 @@ function App() {
                        <Mail className="w-4 h-4 group-hover:text-emerald-500" />
                        <span className="text-sm font-mono">Email Drop</span>
                      </a>
-                     <a href="https://linkedin.com/in/deepakgurjar03" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-400 hover:text-emerald-400 transition-colors group">
-                       <Linkedin className="w-4 h-4 group-hover:text-emerald-500" />
-                       <span className="text-sm font-mono">LinkedIn</span>
+                     
+                     {/* REDDIT LINK */}
+                     <a href="https://www.reddit.com/user/deepak-gurjar/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-400 hover:text-emerald-400 transition-colors group">
+                       <RedditIcon className="w-4 h-4 group-hover:text-emerald-500" />
+                       <span className="text-sm font-mono">Reddit</span>
                      </a>
+                     
                      <a href="https://github.com/deepak-gurjar07" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-400 hover:text-emerald-400 transition-colors group">
                        <Github className="w-4 h-4 group-hover:text-emerald-500" />
                        <span className="text-sm font-mono">GitHub</span>
@@ -460,7 +475,7 @@ function App() {
       <footer className="border-t border-slate-800 py-8 bg-slate-950">
         <div className="container mx-auto text-center">
           <p className="font-mono text-xs text-slate-600">
-            SYSTEM STATUS: ONLINE | © 2024 DEEPAK GURJAR
+            SYSTEM STATUS: ONLINE | © 2025 DEEPAK GURJAR
           </p>
         </div>
       </footer>
